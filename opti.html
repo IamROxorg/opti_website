@@ -15,7 +15,6 @@
       --violet2: #8b5cf6;
       --violet3: #7c3aed;
       --violet4: #6320a6;
-      --accent: #7e8dff;
       --card1: #22173a;
       --card2: #261947;
       --fg: #f2eaff;
@@ -51,34 +50,6 @@
     @keyframes fadeIn {
       to { opacity: 1; }
     }
-    .logo {
-      width: 65px;
-      height: 65px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--violet2) 15%, var(--violet1) 100%);
-      margin: 0 auto 1.1rem auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 18px #a168ff40;
-      opacity: 0;
-      transform: scale(.92) translateY(18px);
-      animation: logoIn 1s .45s cubic-bezier(.46,.53,.42,1.02) forwards;
-    }
-    @keyframes logoIn {
-      to { opacity: 1; transform: scale(1) translateY(0);}
-    }
-    .logo svg {
-      width: 36px;
-      height: 36px;
-      display: block;
-      filter: drop-shadow(0 2px 8px #a168ff56);
-      animation: logoGlow 2.8s infinite alternate;
-    }
-    @keyframes logoGlow {
-      0% { filter: drop-shadow(0 2px 8px #a168ff56);}
-      100% { filter: drop-shadow(0 2px 18px #8b5cf6bb);}
-    }
     .main-title {
       font-size: 2.1rem;
       font-weight: 700;
@@ -97,6 +68,72 @@
       opacity: 0;
       animation: fadeIn .6s 1s forwards;
     }
+    .scriptfor {
+      margin: 2rem auto 1.2rem auto;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      letter-spacing: .02em;
+      background: none;
+      border: none;
+      outline: none;
+      transition: color .23s;
+      user-select: none;
+      opacity: 0.93;
+      text-shadow: 0 2px 14px #0004;
+    }
+    .defile-container {
+      position: relative;
+      width: 375px;
+      max-width: 92vw;
+      height: 54px;
+      margin: 0 auto 2.7rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+      border-radius: 12px;
+      background: linear-gradient(-60deg, var(--bg1) 0%, var(--bg2) 70%, var(--bg3) 100%);
+      background-size: 200% 200%;
+      animation: gradientMove 17s ease-in-out infinite alternate;
+      box-shadow: 0 4px 32px #a168ff15, 0 1px 4px #0001;
+      border: 1px solid #2b1e44;
+    }
+    .defile-option {
+      position: absolute;
+      left: 0; right: 0;
+      top: 0;
+      width: 100%;
+      color: #fff;
+      font-size: 1.19rem;
+      font-weight: 700;
+      letter-spacing: .01em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(25px) scale(.97);
+      transition: opacity .48s, transform .48s;
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+      min-height: 54px;
+      text-shadow: 0 2px 14px #0008, 0 1px 0 #fff2;
+    }
+    .defile-option.active {
+      opacity: 1;
+      transform: translateY(0) scale(1.01);
+      transition: opacity .55s cubic-bezier(.42,.9,.33,1.21), transform .55s cubic-bezier(.32,.92,.44,1.19);
+      z-index: 2;
+      pointer-events: auto;
+    }
+    .defile-option.out {
+      opacity: 0;
+      transform: translateY(-32px) scale(.97);
+      transition: opacity .38s, transform .38s;
+      z-index: 0;
+    }
     .cta-btn {
       background: linear-gradient(90deg, var(--violet2), var(--violet1) 90%);
       color: #fff;
@@ -105,12 +142,13 @@
       border: none;
       border-radius: 13px;
       padding: 1.1rem 2.7rem;
-      margin-top: 1.2rem;
+      margin: 2.1rem auto 1.2rem auto;
       cursor: pointer;
       box-shadow: 0 4px 16px #a168ff2e, 0 1px 4px #0002;
       transition: background .18s, box-shadow .18s, transform .13s;
       outline: none;
       letter-spacing: 0.01em;
+      display: block;
       opacity: 0;
       animation: fadeIn .65s 1.25s forwards, pulseBtn 3s 2s infinite alternate;
     }
@@ -188,138 +226,41 @@
       margin-bottom: 0;
       line-height: 1.5;
     }
-    .how {
-      margin: 2.5rem auto 2.5rem auto;
-      background: linear-gradient(120deg, var(--card2) 70%, var(--card1) 100%);
-      border-radius: var(--radius);
-      max-width: 670px;
-      box-shadow: 0 1px 10px #a168ff13;
-      border: 1px solid #2a1b4b;
-      padding: 2.1rem 2rem 1.5rem 2rem;
-      font-size: 1.13rem;
-      color: #e6ddff;
-      line-height: 1.65;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(40px) scale(.98);
-      will-change: opacity, transform;
-    }
-    .how.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      transition: opacity .75s cubic-bezier(.42,.92,.33,1.18), transform .65s cubic-bezier(.42,.92,.33,1.18);
-    }
-    .how-title {
-      color: var(--violet2);
-      font-size: 1.18rem;
-      font-weight: 700;
-      margin-bottom: 1.1rem;
-      letter-spacing: 0.01em;
-    }
-    .interest {
-      margin: 2.2rem auto 0 auto;
-      max-width: 600px;
-      text-align: center;
-      color: var(--violet2);
-      font-size: 1.15rem;
-      font-weight: 700;
-      background: none;
-      border: none;
-      cursor: pointer;
-      letter-spacing: .02em;
-      padding: .3em 0 .45em 0;
-      transition: color .19s, text-shadow .23s, opacity .7s;
-      opacity: 0;
-      will-change: opacity;
-    }
-    .interest.visible {
-      opacity: 1;
-      animation: pulseInterest 4s .5s infinite alternate;
-    }
-    .interest:hover {
-      color: var(--violet1);
-      text-shadow: 0 2px 18px #a168ff33;
-      text-decoration: underline;
-      animation: none;
-    }
-    @keyframes pulseInterest {
-      0% { text-shadow: 0 0 0 #a168ff00;}
-      90% { text-shadow: 0 2px 7px #a168ff4c;}
-      100% { text-shadow: 0 0 0 #a168ff00;}
-    }
-    .extra-section {
-      margin: 2.7rem auto 2.7rem auto;
-      background: linear-gradient(120deg, var(--card1) 60%, var(--bg3) 100%);
-      border-radius: var(--radius);
-      max-width: 850px;
-      box-shadow: 0 1px 10px #a168ff0d;
-      border: 1px solid #281b50;
-      padding: 2.1rem 2.2rem 1.7rem 2.2rem;
-      font-size: 1.07rem;
-      color: #e3d8fa;
-      line-height: 1.7;
-      text-align: left;
-      opacity: 0;
-      transform: translateY(40px) scale(0.98);
-      will-change: opacity, transform;
-    }
-    .extra-section.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      transition: opacity .85s cubic-bezier(.42,.92,.33,1.18), transform .73s cubic-bezier(.42,.92,.33,1.18);
-    }
-    .extra-section h2 {
-      color: var(--violet2);
-      margin-top: 0;
-      font-size: 1.14rem;
-      margin-bottom: 0.7rem;
-      font-weight: 700;
-    }
-    .extra-section ul {
-      margin: 0 0 1.1em 1.1em;
-      padding: 0;
-      color: #dcd4f2;
-      font-size: 1.01rem;
-    }
-    .extra-section li {
-      margin-bottom: 0.5em;
-    }
-    @media (max-width: 1100px) {
-      .features {gap: 1rem;}
-      .feature-card {max-width:220px;}
-      .extra-section {padding: 1.3rem 1rem;}
-    }
     @media (max-width: 700px) {
-      .features {flex-direction: column;gap:0.7rem;}
-      .feature-card {max-width: unset;}
-      .how, .extra-section {padding: 1.3rem 0.8rem 1.1rem 0.8rem;}
-      .main-title {font-size: 1.23rem;}
+      .main-title{font-size:1.23rem;}
+      .defile-container{height:48px;}
     }
     @media (max-width: 500px) {
-      .logo {width: 44px; height: 44px;}
-      header {padding: 1.3rem 0 1.2rem 0;}
-      .main-title {font-size: 1.01rem;}
+      .main-title{font-size:1.01rem;}
+      .defile-container{height:43px;}
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <svg viewBox="0 0 48 48" fill="none">
-        <rect x="5" y="5" width="38" height="38" rx="12" fill="#a168ff"/>
-        <path d="M13 33L24 15L35 33" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="24" cy="30" r="2.7" fill="#fff"/>
-      </svg>
-    </div>
     <div class="main-title">
       Optimisations Windows
     </div>
     <div class="subtitle">
       Boostez la rapidité, la confidentialité et la tranquillité de votre PC
     </div>
-    <button class="cta-btn" id="dl-btn">Télécharger</button>
   </header>
   <main>
+    <div class="scriptfor">Le script permet de&nbsp;:</div>
+    <div class="defile-container" id="defile-container">
+      <div class="defile-option active">Désactiver la télémétrie</div>
+      <div class="defile-option">Bloquer les pubs et notifications</div>
+      <div class="defile-option">Désactiver Cortana et services inutiles</div>
+      <div class="defile-option">Alléger le démarrage de Windows</div>
+      <div class="defile-option">Optimiser la vie privée</div>
+      <div class="defile-option">Gagner en réactivité</div>
+      <div class="defile-option">Limiter la collecte de données</div>
+      <div class="defile-option">Supprimer les suggestions inutiles</div>
+      <div class="defile-option">Nettoyer les tâches planifiées</div>
+    </div>
+    <button class="cta-btn" id="dl-btn">Télécharger</button>
+
+    <!-- Reste de la page : features, extra-section, etc. (identique à la version précédente) -->
     <section class="features">
       <div class="feature-card">
         <div class="feature-emoji">🚫</div>
@@ -358,7 +299,6 @@
     <div class="interest" onclick="document.getElementById('dl-btn').scrollIntoView({behavior:'smooth'});">
       Vous êtes curieux ? Essayez maintenant.
     </div>
-
     <section class="extra-section">
       <h2>Pour aller plus loin&nbsp;: Conseils & Astuces</h2>
       <ul>
@@ -416,6 +356,71 @@
         isDownloading = false;
       }, 1050);
     };
+
+    // Defilement des options (défilé vertical, boucle sur "Nettoyer les tâches planifiées" => repart sur index 0)
+    const options = [
+      "Désactiver la télémétrie",
+      "Bloquer les pubs et notifications",
+      "Désactiver Cortana et services inutiles",
+      "Alléger le démarrage de Windows",
+      "Optimiser la vie privée",
+      "Gagner en réactivité",
+      "Limiter la collecte de données",
+      "Supprimer les suggestions inutiles",
+      "Nettoyer les tâches planifiées"
+    ];
+    let current = 0;
+    const defileOptions = document.querySelectorAll('.defile-option');
+    function showOption(index) {
+      defileOptions.forEach((el, i) => {
+        if(i === index){
+          el.classList.add('active');
+          el.classList.remove('out');
+          el.textContent = options[i];
+        } else {
+          el.classList.remove('active');
+          el.classList.remove('out');
+        }
+      });
+    }
+    showOption(0);
+
+    setInterval(() => {
+      const prev = current;
+      current = (current + 1) % options.length;
+
+      // Start animation out for previous
+      defileOptions[prev].classList.remove("active");
+      defileOptions[prev].classList.add("out");
+
+      setTimeout(() => {
+        defileOptions[prev].classList.remove("out");
+        defileOptions[prev].style.transition = "none";
+        defileOptions[prev].style.transform = "translateY(25px)";
+        defileOptions[prev].style.opacity = "0";
+
+        // Boucle spéciale : si on vient d'afficher la dernière option, on repart sur la première
+        if (current === 0) {
+          defileOptions[prev].textContent = options[0];
+        } else {
+          defileOptions[prev].textContent = options[current];
+        }
+
+        setTimeout(() => {
+          defileOptions[prev].style.transition = "";
+        }, 20);
+
+        // Active new
+        defileOptions[prev].offsetWidth; // force reflow
+        defileOptions.forEach((el, i) => {
+          if(i === current){
+            el.classList.add('active');
+          } else {
+            el.classList.remove('active');
+          }
+        });
+      }, 400);
+    }, 2600);
 
     // Reveal elements on scroll (Intersection Observer)
     function revealOnScroll(selector, className = "visible") {
